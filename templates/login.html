@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% block title %}LoveHouse{%endblock%}
+
+{% block content%}
+<div class="layui-body" style="top:40px;left:0px;overflow: auto;background-color: #fde2e7;background-image: url({% static 'images/background.png' %});background-size: 100%;background-position: 50% 60%;background-repeat: no-repeat;">
+    <div class="text-center vertical-middle" style="position: relative;top:15%;">
+        <h1 class="mt-5">进入小屋</h1>
+        <form class="form-horizontal mt-5" action="" method="post">
+            {% csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="  开 门  ">
+        </form>
+    </div>
+</div>
+{%endblock%}
+
+{% block footer %}
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% block title %}LoveHouse - Manage Note{%endblock%}
+
+{% block style %}
+<style>
+    .wall-bg {
+        top: 0px;
+        left: 0px;
+        overflow: auto;
+
+        background-color: #fde2e7;
+        background-image: url({% static 'images/background.png' %});
+        background-size: 900px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        font-family: handwriting;
+    }
+
+    .wall {
+        position: absolute;
+        top: 90px;
+        bottom: 180px;
+        left: 0px;
+        right: 0px;
+        background-image: url({% static 'images/note_wall.jpg' %});
+        background-repeat: no-repeat;
+        background-size: 900px;
+        background-position: center
+    }
+
+    .main {
+        position: relative;
+        margin-left: 50%;
+        left: -380px;
+        top: 18.5%;
+        height: 55%;
+        width: 575px;
+    }
+
+    .note-blue {
+        background-image: url({% static 'images/note_blue.png' %});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        width: 120px;
+        height: 120px;
+        float: left;
+    }
+
+    .note-red {
+        background-image: url({% static 'images/note_red.jpg' %});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        width: 120px;
+        height: 120px;
+        float: left;
+        margin-top: 50px;
+        margin-left: 30px;
+    }
+
+    div.note-blue div.note-content {
+        position: relative;
+        transform: rotate(-10.5deg);
+        top: 33px;
+        left: 22px;
+        height: 70px;
+        width: 80px;
+        font-size: 2px;
+        text-align: center;
+    }
+
+    div.note-red div.note-content {
+        position: relative;
+        transform: rotate(10.5deg);
+        top: 33px;
+        left: 16px;
+        height: 70px;
+        width: 80px;
+        font-size: 2px;
+        text-align: center;
+    }
+
+    div.content {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-family: handwriting;
+    }
+
+    div.add-new {
+        /* background-color: antiquewhite; */
+        position: relative;
+        margin-left: 50%;
+        left: 298px;
+        top: -208px;
+        height: 90px;
+        width: 90px;
+        line-height: 90px;
+        text-align: center;
+        background-image: url({% static 'images/note_new.jpg' %});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+    }
+
+    div.history {
+        position: relative;
+        margin-left: 50%;
+        left: 316px;
+        top: -190px;
+        height: 100px;
+        width: 100px;
+        line-height: 100px;
+        text-align: center;
+        background-image: url({% static 'images/note_history.jpg' %});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+    }
+</style>
+{% endblock%}
+
+{% block content%}
+<div class="layui-body wall-bg" style="top:40px">
+    <div class="header">
+        <div class="text-center mt-5" style="font-family: handwriting;">
+            <h1><b>宝贝，悄悄对你说</b></h1>
+        </div>
+
+    </div>
+    <div class="wall">
+        <div class="main">
+            <div class="note-blue ">
+                <a class="close" style="position:relative;left:-20px">&times;</a>
+                <div class="note-content">
+                    <div class="content">
+                        我爱你，老婆 我爱你，老婆我爱你，老婆
+                    </div>
+
+                </div>
+            </div>
+            <div class="note-red ">
+                <a class="close" style="position:relative;left:-10px;top:13px">&times;</a>
+                <div class="note-content">
+                    <div class="content">
+                        老公，我爱你 老公，我爱你老公，我爱你
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="">
+            <div class="add-new"></div>
+        </a>
+        <a href="">
+            <div class="history"></div>
+        </a>
+    </div>
+</div>{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

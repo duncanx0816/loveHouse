@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{% block title %}LoveHouse{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css'%}" media="all">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-4.1.1.min.css' %}">
+    <script src="{% static 'layui/layui.js'%}" charset="utf-8"></script>
+    <script src="{% static 'jquery-2.1.4.min.js' %}"></script>
+    <style>
+        @font-face {
+            font-family: 'handwriting';
+            src: url('{% static "images/note_font.ttf" %}');
+        }
+
+        a:link {
+            color: #007bff
+        }
+
+        a:visited {
+            color: #d90a81
+        }
+
+        a:hover {
+            color: #d90a81
+        }
+
+        a:active {
+            color: #d90a81
+        }
+
+        .handwriting {
+            font-family: handwriting;
+        }
+
+    </style>
+
+    {% block style %} {% endblock%}
+</head>
+
+<body class="layui-layout-body">
+
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header" style="height:40px">
+                <div class="layui-logo" style="line-height: 40px">爱情小屋</div>
+                <ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item" style="line-height: 40px">
+                        <a href="{% url 'note:list_note' %}">留言墙</a>
+                    </li>
+                    <li class="layui-nav-item" style="line-height: 40px">
+                        <a href="{% url 'wish:list_wish' %}">爱的心愿</a>
+                    </li>
+                    <li class="layui-nav-item" style="line-height: 40px">
+                        <a href="{% url 'memory:memory_index' %}">时光隧道</a>
+                    </li>
+                </ul>
+                <ul class="layui-nav layui-layout-right">
+                    {% if user.is_authenticated %}
+                        <li class="layui-nav-item" style="line-height: 40px">
+                            <a href="javascript:;"><img src="https://gss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/8c1001e93901213fa038186756e736d12f2e9505.jpg" class="layui-nav-img">{{user.username}}</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="{% url 'logout' %}">退出登录</a></dd>
+                            </dl>
+                        </li>
+                    {% else %}
+                        <li class="layui-nav-item" style="line-height: 40px"><a href="">登录</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            {% block content %} {% endblock%}
+
+        <div class="layui-footer" style="left:0px;height:35px;background-color: #F2F2F2;padding: 0">
+            {% block footer %} © layui.com - 底部固定区域 {% endblock%}
+        </div>
+    </div>
+    {% block script %} {% endblock%}
+    <script>
+        layui.use(['element', 'flow'], function() {
+            var element = layui.element,
+                flow = layui.flow;
+
+        });
+
+    </script>
+</body>
+
+</html>
