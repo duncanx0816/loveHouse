@@ -124,4 +124,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
-LOGIN_REDIRECT_URL = '/wish/list/'
+LOGIN_REDIRECT_URL = '/note/list/'
