@@ -25,8 +25,7 @@ SECRET_KEY = '-btfmu!_(j8yh6ek9jr^qsoe@0y381t2q5g#$k(!3+r#=rr5c1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','95.169.5.43']
-
+ALLOWED_HOSTS = ['127.0.0.1', '95.169.5.43']
 
 # Application definition
 
@@ -125,3 +124,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 LOGIN_REDIRECT_URL = '/note/list/'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
