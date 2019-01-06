@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'wish',
     'note',
     'memory',
+    'todo',
 ]
 
 MIDDLEWARE = [

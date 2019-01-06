@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% block title %}LoveHouse - Manage Todo{%endblock%}
+
+{% block style %}
+<style>
+    .header{
+        margin-top:30px;
+        margin-bottom:20px;
+    }
+    table th {
+        font-size: 20px;
+    }
+</style>
+{% endblock%}
+
+{% block content%}
+    <div class="container">
+        <a href="{% url 'todo:new_todo' %}"><button type="button" class="btn btn-info btn-block header"><h3>Add Todo</h3></button></a>
+      <table class="table table-hover">
+          <thead>
+            <tr class="row">
+                <th class="col-8">Content</th>
+                <th class=" col-2">Author</th>
+                <th class=" col-2">Date</th>
+            </tr>
+        </thead>
+
+        {% for todo in todoes %}
+        <tr id={{ forloop.counter }}>
+            <tr id=1 class="row">
+                <td class="col-8"><a href="">{{ todo.body }}</a></td>
+                <td class=" col-2">{{ todo.author.username }}</td>
+                <td class=" col-2">{{ todo.created_str }}</td>
+            </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

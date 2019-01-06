@@ -18,9 +18,9 @@ class NewNote(NoteMixin, CreateView):
     def post(self, request, *args, **kargs):
         form = NewNoteForm(data=request.POST)
         if form.is_valid():
-            new_wish = form.save(commit=False)
-            new_wish.author = self.request.user
-            new_wish.save()
+            new_note = form.save(commit=False)
+            new_note.author = self.request.user
+            new_note.save()
             return redirect('note:list_note')
         return self.render_to_response({"form": form})
 
@@ -31,4 +31,13 @@ class ListNote(NoteMixin, ListView):
 
     def get_queryset(self):
         qs = super(ListNote, self).get_queryset()
+        return qs.filter(author=self.request.user)
+
+
+class HistNote(NoteMixin, ListView):
+    context_object_name = "notes"
+    template_name = 'note/history.html'
+
+    def get_queryset(self):
+        qs = super(HistNote, self).get_queryset()
         return qs.filter(author=self.request.user)

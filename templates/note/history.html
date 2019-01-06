@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% block title %}LoveHouse - Note History{%endblock%}
+
+{% block style %}
+<style>
+    .header{
+        margin-top:30px;
+        margin-bottom:20px;
+    }
+    table th {
+        font-size: 20px;
+    }
+</style>
+{% endblock%}
+
+{% block content%}
+    <div class="container">
+        <h3 class="header">Note History</h3>
+      <table class="table table-hover">
+          <thead>
+            <tr class="row">
+                <th class="col-8">Content</th>
+                <th class=" col-2">Author</th>
+                <th class=" col-2">Publish</th>
+            </tr>
+        </thead>
+
+        {% for note in notes %}
+        <tr id={{ forloop.counter }}>
+            <tr id=1 class="row">
+                <td class="col-8"><a href="">{{ note.body }}</a></td>
+                <td class=" col-2">{{ note.author.username }}</td>
+                <td class=" col-2">{{ note.created_str }}</td>
+            </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

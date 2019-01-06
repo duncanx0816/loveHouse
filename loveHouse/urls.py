@@ -37,4 +37,5 @@ urlpatterns = [
     path('wish/', include('wish.urls', namespace='wish')),
     path('note/', include('note.urls', namespace='note')),
     path('memory/', include('memory.urls', namespace='memory')),
+    path('todo/', include('todo.urls', namespace='todo')),
 ]
