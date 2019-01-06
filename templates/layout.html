@@ -11,11 +11,6 @@
     <script src="{% static 'layui/layui.js'%}" charset="utf-8"></script>
     <script src="{% static 'jquery-2.1.4.min.js' %}"></script>
     <style>
-        @font-face {
-            font-family: 'handwriting';
-            src: url('{% static "images/note_font.ttf" %}');
-        }
-
         a:link {
             color: #007bff
         }
@@ -32,21 +27,78 @@
             color: #d90a81
         }
 
+        .background {
+            background-image: url(/static/images/background.png);
+            background-size: 900px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            text-align: center;
+            line-height: 25px;
+            margin-top: 5px;
+            font-size: 12px;
+
+        }
+
+        @font-face {
+            font-family: 'handwriting';
+            src: url('/static/images/note_font.ttf');
+        }
+
         .handwriting {
             font-family: handwriting;
         }
 
+        .header{
+            margin-top:30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
     </style>
+
+    <script>
+        var createData = '2019-01-06 00:00:00';
+        function timesFun(timesData) {
+            //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+            var dateBegin = new Date(timesData.replace(/-/g, "/")); //将-转化为/，使用new Date
+            var dateEnd = new Date(); //获取当前时间
+            var dateDiff = dateEnd.getTime() - dateBegin.getTime(); //时间差的毫秒数
+            var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); //计算出相差天数
+            var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
+            var hours = Math.floor(leave1 / (3600 * 1000)) //计算出小时数
+            //计算相差分钟数
+            var leave2 = leave1 % (3600 * 1000) //计算小时数后剩余的毫秒数
+            var minutes = Math.floor(leave2 / (60 * 1000)) //计算相差分钟数
+            //计算相差秒数
+            var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
+            var seconds = Math.round(leave3 / 1000);
+            var timesString = '';
+
+            if (dayDiff != 0) {
+                timesString = dayDiff + '天';
+            } else if (dayDiff == 0 && hours != 0) {
+                timesString = hours + '小时';
+            } else if (dayDiff == 0 && hours == 0) {
+                timesString = minutes + '分钟';
+            }
+
+            return {
+                timesString: timesString
+            }
+        }
+    </script>
 
     {% block style %} {% endblock%}
 </head>
 
-<body class="layui-layout-body">
+<body class="layui-layout-body handwriting" style="background-color: #fde2e7;">
 
-        <div class="layui-layout layui-layout-admin">
-            <div class="layui-header" style="height:40px">
-                <div class="layui-logo" style="line-height: 40px">爱情小屋</div>
-                <ul class="layui-nav layui-layout-left">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header" style="height:40px;">
+            <div class="layui-logo" style="line-height: 40px;text-align: left; padding-left: 30px;width:130px">爱情小屋</div>
+            <ul class="layui-nav layui-layout-left" style="left:130px;padding-left: 0px;margin-bottom: 0px;">
                     <li class="layui-nav-item" style="line-height: 40px">
                         <a href="{% url 'note:list_note' %}">留言墙</a>
                     </li>
@@ -56,8 +108,11 @@
                     <li class="layui-nav-item" style="line-height: 40px">
                         <a href="{% url 'memory:memory_index' %}">时光隧道</a>
                     </li>
+                    <li class="layui-nav-item" style="line-height: 40px">
+                        <a href="">TodoList</a>
+                    </li>
                 </ul>
-                <ul class="layui-nav layui-layout-right">
+                <ul class="layui-nav layui-layout-right" style="margin-bottom: 0px;">
                     {% if user.is_authenticated %}
                         <li class="layui-nav-item" style="line-height: 40px">
                             <a href="javascript:;"><img src="https://gss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/8c1001e93901213fa038186756e736d12f2e9505.jpg" class="layui-nav-img">{{user.username}}</a>
@@ -71,11 +126,15 @@
                 </ul>
             </div>
 
-            {% block content %} {% endblock%}
+            <div class="layui-body background" style="left:0px;top:40px;bottom:35px;">
+                {% block content %} {% endblock%}
+            </div>
 
-        <div class="layui-footer" style="left:0px;height:35px;background-color: #F2F2F2;padding: 0">
-            {% block footer %} © layui.com - 底部固定区域 {% endblock%}
-        </div>
+            <div class="layui-footer" style="left:0px;height:35px;background-color: #F2F2F2;padding: 0">
+                <div class="footer-content">
+                    小屋房龄：
+                </div>
+            </div>
     </div>
     {% block script %} {% endblock%}
     <script>
@@ -85,6 +144,9 @@
 
         });
 
+        $(function() {
+            $(".footer-content").text('小屋房龄：' + timesFun(createData).timesString)
+        });
     </script>
 </body>
 

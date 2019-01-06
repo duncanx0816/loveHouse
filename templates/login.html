@@ -4,16 +4,15 @@
 {% block title %}LoveHouse{%endblock%}
 
 {% block content%}
-<div class="layui-body" style="top:40px;left:0px;overflow: auto;background-color: #fde2e7;background-image: url({% static 'images/background.png' %});background-size: 100%;background-position: 50% 60%;background-repeat: no-repeat;">
-    <div class="text-center vertical-middle" style="position: relative;top:15%;">
-        <h1 class="mt-5">进入小屋</h1>
+    <div class="text-center vertical-middle" style="position: relative;top:10%;">
+        <h1 class="mt-5 mb-3"><b>进入小屋</b></h1>
         <form class="form-horizontal mt-5" action="" method="post">
             {% csrf_token%}
-            {{form.as_p}}
-            <input type="submit" value="  开 门  ">
+            <p><label for="{{ form.username.id_for_label }}" style="width:100px;text-align: right;"><b>你是谁：</b></label> {{ form.username }}</p>
+            <p><label for="{{ form.password.id_for_label }}" style="width:100px;text-align: right;"><b>暗号：</b></label> {{ form.password }}</p>
+            <input type="submit" value=" 芝麻开门  " class="btn-info font-weight-bold" style="margin-top:20px;width:120px;line-height: 35px">
         </form>
     </div>
-</div>
 {%endblock%}
 
 {% block footer %}

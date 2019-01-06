@@ -3,17 +3,22 @@
 
 {% block title %}LoveHouse - New Wish{%endblock%}
 
+{% block style %}
+
+{%endblock%}
+
 {% block content%}
-<div class="layui-body" style="top:40px;left:0px;overflow: auto;background-color: #fde2e7;background-image: url({% static 'images/background.png' %});background-size: 100%;background-position: 50% 100%;background-repeat: no-repeat;">
-    <div class="text-center vertical-middle" style="position: relative;top:15%;">
-        <h1 class="mt-5">New Wish</h1>
-        <form class="form-horizontal mt-5" action="" method="post">
-            {% csrf_token%}
-            {{form.as_p}}
-            <input type="submit" value="许愿">
-        </form>
-    </div>
-</div>
+    <div class="header" style="margin-top:40px;margin-bottom:20px;">
+         <h1><b>New Wish</b></h1>
+     </div>
+
+     <div class="text-center vertical-middle">
+         <form class="form-horizontal mt-5" action="" method="post">
+             {% csrf_token%}
+             <p>{{form.body}}</p>
+             <input type="submit" value="许 愿" class="btn-info" style="width:120px;line-height:35px;font-size: 20px;font-weight: 1000;margin-top:20px;">
+         </form>
+     </div>
 {%endblock%}
 
 {% block footer %}
