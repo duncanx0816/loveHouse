@@ -51,10 +51,8 @@ class ListNote(NoteMixin, ListView):
                 'gender': note.gender,
                 'left': randint(-30, 30),
                 'top': randint(-15, 15),
-                'body': note.body
+                'body': note.body[:24]
             })
-        logger.info(len(res))
-        logger.info(res)
         shuffle(res)
         return JsonResponse(res, safe=False)
 
