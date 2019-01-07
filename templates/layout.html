@@ -78,9 +78,9 @@
             var timesString = '';
 
             if (dayDiff != 0) {
-                timesString = dayDiff + '天';
+                timesString = dayDiff + '天'+ hours+'小时'+minutes+'分钟';
             } else if (dayDiff == 0 && hours != 0) {
-                timesString = hours + '小时';
+                timesString = hours + '小时'+minutes+'分钟';
             } else if (dayDiff == 0 && hours == 0) {
                 timesString = minutes + '分钟';
             }
