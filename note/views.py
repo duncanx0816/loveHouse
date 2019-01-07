@@ -40,4 +40,4 @@ class HistNote(NoteMixin, ListView):
 
     def get_queryset(self):
         qs = super(HistNote, self).get_queryset()
-        return qs.filter(author=self.request.user)
+        return qs  # .filter(author=self.request.user)
