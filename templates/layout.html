@@ -28,7 +28,7 @@
         }
 
         .background {
-            background-image: url(/static/images/background.png);
+            background-image: url(/static/images/background.jpg);
             background-size: 600px;
             background-position: 50% 100%;
             background-repeat: no-repeat;
@@ -98,7 +98,7 @@
 
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header" style="height:40px;">
-            <div class="layui-logo" style="line-height: 40px;text-align: left; padding-left: 30px;width:130px">爱情小屋</div>
+            <div class="layui-logo" style="line-height: 40px;text-align: left; padding-left: 30px;width:130px"><img src="{% static 'images/logo.jpg' %}" alt="爱情小屋" style="height:40px"></div>
             <ul class="layui-nav layui-layout-left" style="left:130px;padding-left: 0px;margin-bottom: 0px;">
                     <li class="layui-nav-item" style="line-height: 40px">
                         <a href="{% url 'note:list_note' %}">留言墙</a>
@@ -137,7 +137,7 @@
                 </div>
             </div>
     </div>
-    {% block script %} {% endblock%}
+
     <script>
         layui.use(['element', 'flow'], function() {
             var element = layui.element,
@@ -148,6 +148,9 @@
         $(function() {
             $(".footer-content").text('小屋房龄：' + timesFun(createData).timesString)
         });
+    </script>
+    <script>
+        {% block script %} {% endblock%}
     </script>
 </body>
 

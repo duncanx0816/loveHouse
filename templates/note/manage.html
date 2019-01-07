@@ -49,13 +49,13 @@
          background-position: center;
      }
 
-     .main {
+     #main {
          position: relative;
          margin-left: 50%;
-         left: -380px;
-         top: -140px;
-         height: 350px;
-         width: 575px;
+         left: -350px;
+         top: -145px;
+         height: 230px;
+         width: 550px;
      }
 
      .note-blue {
@@ -66,6 +66,8 @@
          width: 120px;
          height: 120px;
          float: left;
+         margin:5px 20px 5px 20px;
+
      }
 
      .note-red {
@@ -76,8 +78,7 @@
          width: 120px;
          height: 120px;
          float: left;
-         margin-top: 30px;
-         margin-left: 30px;
+         margin:5px 20px 5px 20px;
      }
 
      div.note-blue div.note-content {
@@ -89,6 +90,7 @@
          width: 80px;
          font-size: 2px;
          text-align: center;
+
      }
 
      div.note-red div.note-content {
@@ -123,26 +125,22 @@
         <a href="{% url 'note:hist_note'%}">
             <div class="history"></div>
         </a>
-        <div class="main">
-            <div class="note-blue ">
-                <a class="close" style="position:relative;left:-20px">&times;</a>
-                <div class="note-content">
-                    <div class="content">
-                        我爱你，老婆 我爱你，老婆我爱你，老婆
-                    </div>
-
-                </div>
-            </div>
-            <div class="note-red ">
-                <a class="close" style="position:relative;left:-10px;top:13px">&times;</a>
-                <div class="note-content">
-                    <div class="content">
-                        老公，我爱你 老公，我爱你老公，我爱你
-                    </div>
+        <div id="main">
+        </div>
+        <div class="d-none note-blue" id="note-blue">
+            <a class="close" style="position:relative;left:-20px">&times;</a>
+            <div class="note-content">
+                <div class="content">
                 </div>
             </div>
         </div>
-
+        <div class="d-none note-red" id="note-red">
+            <a class="close" style="position:relative;left:-10px;top:13px">&times;</a>
+            <div class="note-content">
+                <div class="content">
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
@@ -150,3 +148,38 @@
 {% block footer %}
 
 {% endblock %}
+
+{% block script %}
+    $(function() {
+        $.ajax({
+            type: 'post',
+            url: "{% url 'note:list_note' %}",
+            data: {
+            },
+            success: function(data) {
+                if (data) {
+                    $.each(data,function(index,item){
+                        if(item.gender){
+                            $('#note-blue .content').text(item.body);
+                            $('#main').append(
+                                $('#note-blue').clone(true)
+                                .removeClass('d-none')
+                                .attr('id','note-'+index)
+                                .css({'position':'relative','left':item.left,'top':item.top})
+                            )
+                            <!-- console.log(item.left+';  '+item.top); -->
+                        }else{
+                            $('#note-red .content').text(item.body);
+                            $('#main').append(
+                                $('#note-red').clone(true)
+                                .removeClass('d-none')
+                                .attr('id','note-'+index)
+                                .css({'position':'relative','left':item.left,'top':item.top})
+                            )
+                        }
+                    });
+                }
+            }
+        })
+    });
+{% endblock%}
