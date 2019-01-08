@@ -20,20 +20,24 @@
         <a href="{% url 'wish:new_wish' %}"><button type="button" class="btn btn-info btn-block header"><h3>宝贝，许个愿吧</h3></button></a>
       <table class="table table-hover">
           <thead>
-            <tr class="row">
-                <th class="col-8">心愿</th>
-                <th class=" col-2">许愿人</th>
-                <th class=" col-2">日期</th>
-            </tr>
+              <tr>
+                  <th class="" style="width:80px"></th>
+                  <th class="" style="width:400px">Content</th>
+                  <th class=" " style="width:80px">Author</th>
+                  <th class="" style="width:100px">Date</th>
+              </tr>
         </thead>
 
         {% for wish in wishes %}
         <tr id={{ forloop.counter }}>
-            <tr id=1 class="row">
-                <td class="col-8"><a href="">{{ wish.body }}</a></td>
-                <td class=" col-2">{{ wish.author.username }}</td>
-                <td class=" col-2">{{ wish.created_str }}</td>
-            </tr>
+            <td class="text-right" style="width:80px">
+                <a href=""><i class=" layui-icon layui-icon-edit"></i></a>
+                <a href=""><i class=" layui-icon layui-icon-delete"></i></a>
+            </td>
+            <td class="" style="width:400px"><a href="">{{ wish.body }}</a></td>
+            <td class="" style="width:80px">{{ wish.author.username }}</td>
+            <td class="" style="width:100px">{{ wish.created_str }}</td>
+        </tr>
         {% endfor %}
       </table>
     </div>

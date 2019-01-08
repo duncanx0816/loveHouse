@@ -20,20 +20,24 @@
         <a href="{% url 'todo:new_todo' %}"><button type="button" class="btn btn-info btn-block header"><h3>Add Todo</h3></button></a>
       <table class="table table-hover">
           <thead>
-            <tr class="row">
-                <th class="col-8">Content</th>
-                <th class=" col-2">Author</th>
-                <th class=" col-2">Date</th>
-            </tr>
+              <tr>
+                  <th class="" style="width:80px"></th>
+                  <th class="" style="width:400px">Content</th>
+                  <th class=" " style="width:80px">Author</th>
+                  <th class="" style="width:100px">Date</th>
+              </tr>
         </thead>
 
         {% for todo in todoes %}
         <tr id={{ forloop.counter }}>
-            <tr id=1 class="row">
-                <td class="col-8"><a href="">{{ todo.body }}</a></td>
-                <td class=" col-2">{{ todo.author.username }}</td>
-                <td class=" col-2">{{ todo.created_str }}</td>
-            </tr>
+            <td class="text-right" style="width:80px">
+                <a href=""><i class=" layui-icon layui-icon-edit"></i></a>
+                <a href=""><i class=" layui-icon layui-icon-delete"></i></a>
+            </td>
+            <td class="" style="width:400px"><a href="">{{ todo.body }}</a></td>
+            <td class="" style="width:80px">{{ todo.author.username }}</td>
+            <td class="" style="width:100px">{{ todo.created_str }}</td>
+        </tr>
         {% endfor %}
       </table>
     </div>

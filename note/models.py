@@ -7,14 +7,14 @@ from datetime import datetime
 class Note(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
     body = models.TextField()
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ("-created",)
 
     @property
     def created_str(self):
-        return datetime.strftime(self.created, '%y/%m/%d')
+        return datetime.strftime(self.created, '%y/%m/%d %H:%M')
 
     @property
     def gender(self):
